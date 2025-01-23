@@ -1,59 +1,49 @@
-class Penguin extends Animal implements Walk, Swim {
-    private boolean isSwimming;
-    private int walkSpeed;
-    private int swimSpeed;
+case 3: // Penguin code
+                    do {
+                        System.out.println("The animal which is chosen is : " + penguinObject.getNameOfAnimal());
+                        menuChoice = animalDetailsManipulationMenu(keyboard, penguinObject);
 
-    public Penguin() {
-        super("Penguin");
-        this.isSwimming = false; // Default to not swimming
-        this.walkSpeed = 0;
-        this.swimSpeed = 0;
-    }
+                        switch (menuChoice) {
+                            case 1: // Set properties
+                            System.out.println("Enter age:");
+                                penguinObject.setAge(keyboard.nextInt());
+                                System.out.println("Enter height:");
+                                penguinObject.setHeight(keyboard.nextInt());
+                                System.out.println("Enter weight:");
+                                penguinObject.setWeight(keyboard.nextInt());
+                                System.out.println("Enter walking speed:");
+                                penguinObject.setWalkSpeed(keyboard.nextInt());
+                                System.out.println("Enter swimming speed:");
+                                penguinObject.setSwimSpeed(keyboard.nextInt());
+                                break;
+                            case 2: // Display properties
+                            System.out.println("Name: " + penguinObject.getNameOfAnimal());
+                                System.out.println("Age: " + penguinObject.getAge());
+                                System.out.println("Height: " + penguinObject.getHeight());
+                                System.out.println("Weight: " + penguinObject.getWeight());
+                                System.out.println("Walking Speed: " + penguinObject.getWalkSpeed());
+                                System.out.println("Swimming Speed: " + penguinObject.getSwimSpeed());
+                                break;
 
-    // Getters and setters for isSwimming, walkSpeed, and swimSpeed
+                            case 3: // Display movement
+                                System.out.println("Is the penguin swimming? (1 for yes, 0 for no):");
+                                int swimming = keyboard.nextInt();
+                                penguinObject.setSwimming(swimming == 1); // Set isSwimming based on input
+                                if (penguinObject.isSwimming()) {
+                                    penguinObject.swimming();
+                                } else {
+                                    penguinObject.walking();
+                                }
+                                break;
+                            case 4: // Display eating
+                                penguinObject.eatingFood();
+                                penguinObject.eatingCompleted();
+                                break;
 
-
-    public boolean isSwimming() {
-        return isSwimming;
-    }
-
-    public void setSwimming(boolean swimming) {
-        isSwimming = swimming;
-    }
-
-    public int getWalkSpeed() {
-        return walkSpeed;
-    }
-
-    public void setWalkSpeed(int walkSpeed) {
-        this.walkSpeed = walkSpeed;
-    }
-
-    public int getSwimSpeed() {
-        return swimSpeed;
-    }
-
-    public void setSwimSpeed(int swimSpeed) {
-        this.swimSpeed = swimSpeed;
-    }
-
-    @Override
-    public void eatingFood() {
-        System.out.println("Penguin: I am eating delicious fish.");
-    }
-
-    @Override
-    public void eatingCompleted() {
-        System.out.println("Penguin: I have eaten fish.");
-    }
-
-    @Override
-    public void walking() {
-        System.out.println("Penguin: I am walking at the speed of " + this.getWalkSpeed() + " mph");
-    }
-
-    @Override
-    public void swimming() {
-        System.out.println("Penguin: I am swimming at the speed of " + this.getSwimSpeed() + " nautical miles per hour");
-    }
-}
+                            default:
+                                System.out.println("Invalid choice");
+                        }
+                        System.out.println("Continue with this animal? (Enter 1 for yes/ 2 for no):");
+                        continueInnerLoop = keyboard.nextInt();
+                    } while (continueInnerLoop == 1);
+                    break;
