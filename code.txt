@@ -1,123 +1,59 @@
-  // for getting input
-        Scanner keyboard = new Scanner(System.in);
+class Penguin extends Animal implements Walk, Swim {
+    private boolean isSwimming;
+    private int walkSpeed;
+    private int swimSpeed;
 
-        // for loop continuation - 1 represents true
-        int continueOuterLoop = 1;
-        int continueInnerLoop = 1;
-
-        // for menu choice
-        int menuChoice = 1;
-
-
-        Tiger tigerObject = new Tiger();
-        Dolphin dolphinObject = new Dolphin();
-
-
-
-        do {
-            switch (animalChoiceMenu(keyboard)) {
-                case 1:
-                    do {
-                        System.out.println("The animal which is chosen is : " + tigerObject.getNameOfAnimal());
-
-                        menuChoice = animalDetailsManipulationMenu(keyboard, tigerObject);
-
-                        switch (menuChoice) {
-                            case 1:
-                                System.out.println("Enter age:");
-                                tigerObject.setAge(keyboard.nextInt());
-                                System.out.println("Enter height:");
-                                tigerObject.setHeight(keyboard.nextInt());
-                                System.out.println("Enter weight:");
-                                tigerObject.setWeight(keyboard.nextInt());
-                                System.out.println("Enter number of stripes:");
-                                tigerObject.setNumberOfStripes(keyboard.nextInt());
-                                System.out.println("Enter speed:");
-                                tigerObject.setSpeed(keyboard.nextInt());
-                                System.out.println("Enter sound level of roar:");
-                                tigerObject.setSoundLevelOfRoar(keyboard.nextInt());
-                                break;
-
-                            case 2:
-                                System.out.println("Name: " + tigerObject.getNameOfAnimal());
-                                System.out.println("Age: " + tigerObject.getAge());
-                                System.out.println("Height: " + tigerObject.getHeight());
-                                System.out.println("Weight: " + tigerObject.getWeight());
-                                System.out.println("Number of Stripes: " + tigerObject.getNumberOfStripes());
-                                System.out.println("Speed: " + tigerObject.getSpeed());
-                                System.out.println("Sound Level of Roar: " + tigerObject.getSoundLevelOfRoar());
-                                break;
-                            case 3:
-                                tigerObject.walking();
-                                break;
-                            case 4:
-                                tigerObject.eatingFood();
-                                tigerObject.eatingCompleted();
-                                break;
-                            default:
-                                System.out.println("Invalid choice");
-
-                        }
-                        System.out.println("Continue with this animal? (Enter 1 for yes/ 2 for no):");
-                        continueInnerLoop = keyboard.nextInt();
-                    } while (continueInnerLoop == 1);
-
-                    break;
-                case 2:
-                    do {
-                        System.out.println("The animal which is chosen is : " + dolphinObject.getNameOfAnimal());
-                        menuChoice = animalDetailsManipulationMenu(keyboard, dolphinObject);
-
-                        switch (menuChoice) {
-                            case 1:
-                                System.out.println("Enter age:");
-                                dolphinObject.setAge(keyboard.nextInt());
-                                System.out.println("Enter height:");
-                                dolphinObject.setHeight(keyboard.nextInt());
-                                System.out.println("Enter weight:");
-                                dolphinObject.setWeight(keyboard.nextInt());
-
-                                System.out.println("Enter color:");
-                                keyboard.nextLine(); // Consume newline
-                                dolphinObject.setColor(keyboard.nextLine());
-
-
-                                System.out.println("Enter swimming speed:");
-                                dolphinObject.setSwimmingSpeed(keyboard.nextInt());
-                                break;
-
-                            case 2:
-                                System.out.println("Name: " + dolphinObject.getNameOfAnimal());
-                                System.out.println("Age: " + dolphinObject.getAge());
-                                System.out.println("Height: " + dolphinObject.getHeight());
-                                System.out.println("Weight: " + dolphinObject.getWeight());
-                                System.out.println("Color: " + dolphinObject.getColor());
-                                System.out.println("Swimming Speed: " + dolphinObject.getSwimmingSpeed());
-                                break;
-                            case 3:
-                                dolphinObject.swimming();
-                                break;
-                            case 4:
-                                dolphinObject.eatingFood();
-                                dolphinObject.eatingCompleted();
-                                break;
-                            default:
-                                System.out.println("Invalid choice");
-
-                        }
-                        System.out.println("Continue with this animal? (Enter 1 for yes/ 2 for no):");
-                        continueInnerLoop = keyboard.nextInt();
-                    } while (continueInnerLoop == 1);
-                    break;
-
-                default:
-                    System.out.println("Sorry, no such animal available.");
-            }
-
-            System.out.println("Continue main Zoo menu? (Enter 1 for yes/ 2 for no):");
-            continueOuterLoop = keyboard.nextInt();
-
-        } while (continueOuterLoop == 1);
-
-
+    public Penguin() {
+        super("Penguin");
+        this.isSwimming = false; // Default to not swimming
+        this.walkSpeed = 0;
+        this.swimSpeed = 0;
     }
+
+    // Getters and setters for isSwimming, walkSpeed, and swimSpeed
+
+
+    public boolean isSwimming() {
+        return isSwimming;
+    }
+
+    public void setSwimming(boolean swimming) {
+        isSwimming = swimming;
+    }
+
+    public int getWalkSpeed() {
+        return walkSpeed;
+    }
+
+    public void setWalkSpeed(int walkSpeed) {
+        this.walkSpeed = walkSpeed;
+    }
+
+    public int getSwimSpeed() {
+        return swimSpeed;
+    }
+
+    public void setSwimSpeed(int swimSpeed) {
+        this.swimSpeed = swimSpeed;
+    }
+
+    @Override
+    public void eatingFood() {
+        System.out.println("Penguin: I am eating delicious fish.");
+    }
+
+    @Override
+    public void eatingCompleted() {
+        System.out.println("Penguin: I have eaten fish.");
+    }
+
+    @Override
+    public void walking() {
+        System.out.println("Penguin: I am walking at the speed of " + this.getWalkSpeed() + " mph");
+    }
+
+    @Override
+    public void swimming() {
+        System.out.println("Penguin: I am swimming at the speed of " + this.getSwimSpeed() + " nautical miles per hour");
+    }
+}
