@@ -1,49 +1,20 @@
-case 3: // Penguin code
-                    do {
-                        System.out.println("The animal which is chosen is : " + penguinObject.getNameOfAnimal());
-                        menuChoice = animalDetailsManipulationMenu(keyboard, penguinObject);
-
-                        switch (menuChoice) {
-                            case 1: // Set properties
-                            System.out.println("Enter age:");
+ case 1: // Set properties  (MODIFIED)
+                                System.out.println("Enter age:");
                                 penguinObject.setAge(keyboard.nextInt());
                                 System.out.println("Enter height:");
                                 penguinObject.setHeight(keyboard.nextInt());
                                 System.out.println("Enter weight:");
                                 penguinObject.setWeight(keyboard.nextInt());
-                                System.out.println("Enter walking speed:");
-                                penguinObject.setWalkSpeed(keyboard.nextInt());
-                                System.out.println("Enter swimming speed:");
-                                penguinObject.setSwimSpeed(keyboard.nextInt());
-                                break;
-                            case 2: // Display properties
-                            System.out.println("Name: " + penguinObject.getNameOfAnimal());
-                                System.out.println("Age: " + penguinObject.getAge());
-                                System.out.println("Height: " + penguinObject.getHeight());
-                                System.out.println("Weight: " + penguinObject.getWeight());
-                                System.out.println("Walking Speed: " + penguinObject.getWalkSpeed());
-                                System.out.println("Swimming Speed: " + penguinObject.getSwimSpeed());
-                                break;
 
-                            case 3: // Display movement
-                                System.out.println("Is the penguin swimming? (1 for yes, 0 for no):");
-                                int swimming = keyboard.nextInt();
-                                penguinObject.setSwimming(swimming == 1); // Set isSwimming based on input
-                                if (penguinObject.isSwimming()) {
-                                    penguinObject.swimming();
-                                } else {
-                                    penguinObject.walking();
+                                System.out.println("Is the penguin swimming? (true/false):");  // Add swimming status input
+                                penguinObject.setSwimming(keyboard.nextBoolean());
+
+                                if (penguinObject.isSwimming()){
+                                    System.out.println("Enter the swim speed of the penguin:");
+                                    penguinObject.setSwimSpeed(keyboard.nextInt());
+                                }
+                                else{
+                                System.out.println("Enter the walk speed of the penguin:");
+                                penguinObject.setWalkSpeed(keyboard.nextInt());
                                 }
                                 break;
-                            case 4: // Display eating
-                                penguinObject.eatingFood();
-                                penguinObject.eatingCompleted();
-                                break;
-
-                            default:
-                                System.out.println("Invalid choice");
-                        }
-                        System.out.println("Continue with this animal? (Enter 1 for yes/ 2 for no):");
-                        continueInnerLoop = keyboard.nextInt();
-                    } while (continueInnerLoop == 1);
-                    break;
