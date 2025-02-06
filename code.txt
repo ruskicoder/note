@@ -1,14 +1,12 @@
-class ClassroomCourse extends Course {
-    //TODO 6: add instance variables
-    String school;
-    String session;
+public class Main {
+    public static void main(String[] args) {
+        //TODO 8: declare and initialize the object of ClassroomCourse class
+        Subject subject = new Subject("Mathematics", 4.0);
+        ClassroomCourse classroomCourse = new ClassroomCourse(subject, "Dr. Smith", 1500, "Example School", "Fall 2024");
 
-    ClassroomCourse(Subject subject, String instructor, int fee,
-                    String school, String session) {
-        //TODO 7: call superclass constructor
-        //complete constructor code
-        super(subject, instructor, fee);
-        this.school = school;
-        this.session = session;
+        //TODO 9: declare and initialize the Learner object.
+        Learner learner = new Learner("Alice", classroomCourse);
+
+
     }
 }
