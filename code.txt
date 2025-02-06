@@ -1,13 +1,16 @@
-public class Learner {
-    //TODO 1: declare instance variables
-    String name;
-    double grade;
-    Course course;
-    double gradeScore;
+abstract class Course {
+    //TODO 3: include instance variables for Course class and
+    // complete constructor code
+    Subject subject;
+    String instructor;
+    int fee;
+    int assignmentMarks;
+    int quizMarks;
 
-    Learner(String name, Course course) {
-        //TODO 2: complete constructor
-        this.name = name;
-        this.course = course;
+
+    Course(Subject subject, String instructor, int fee) {
+        this.subject = subject;
+        this.instructor = instructor;
+        this.fee = fee;
     }
 }
