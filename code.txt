@@ -1,17 +1,57 @@
+// TODO 18: display course list and accept user choice
+        System.out.println("Available Courses:");
+        System.out.println("1 = Java");
+        System.out.println("2 = Java Online");
+        System.out.println("3 = JavaScript");
+        System.out.println("4 = JavaScript Online");
+        System.out.print("Enter course code: ");
+        int courseCode = input.nextInt();
+        input.nextLine(); // Consume newline left-over
 
-    public double calculateGrade() {
-        //TODO 17: calculate gradeScore as per the instructions above
-        double assignmentScore;
-        double quizScore;
+        Course selectedCourse;
 
-        if (course.subject.title.contains("Online")) {
-            assignmentScore = (double) course.assignmentMarks / 30 * 10;
-            quizScore = (double) course.quizMarks / 10 * 10;
-        } else {
-            assignmentScore = (double) course.assignmentMarks / 100 * 10;
-            quizScore = (double) course.quizMarks / 30 * 10;
+        // TODO 19: initialize object of chosen course
+        switch (courseCode) {
+            case 1:
+                selectedCourse = new Course("Java", false);
+                break;
+            case 2:
+                selectedCourse = new Course("Java Online", true);
+                break;
+            case 3:
+                selectedCourse = new Course("JavaScript", false);
+                break;
+            case 4:
+                selectedCourse = new Course("JavaScript Online", true);
+                break;
+            default:
+                System.out.println("Invalid course code.");
+                return; // Exit the program if the input is invalid
         }
 
-        this.gradeScore = (assignmentScore + quizScore) / 2;
-        return this.gradeScore;
-    }
+        // TODO 20: accept user input for learner's name
+        System.out.print("Enter learner's name: ");
+        String learnerName = input.nextLine();
+        Learner learner = new Learner(learnerName, selectedCourse);
+
+
+        // TODO 21: call assignmentScore() method and quizScore() methods
+        if (selectedCourse.isOnline()) {
+            System.out.println("For online courses, the maximum assignment mark is 30 and the maximum quiz mark is 10.");
+        } else {
+            System.out.println("For classroom courses, the maximum assignment mark is 100 and the maximum quiz mark is 30.");
+        }
+
+        learner.assignmentScore(input);
+        learner.quizScore(input);
+
+
+
+        // TODO 22: call calculateGrade() method. Display the result as described above
+        double gradeScore = learner.calculateGrade();
+        if (gradeScore >= 5) {
+            System.out.println(learner.getName() + " successfully passed " + selectedCourse.getCourseName() + " with a grade of " + gradeScore);
+        } else {
+            System.out.println(learner.getName() + " completed " + selectedCourse.getCourseName() + " with a grade of " + gradeScore);
+
+        }
