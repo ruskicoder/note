@@ -1,13 +1,17 @@
-class OnlineCourse extends Course {
-    //TODO 15: include videoLessons and weeks attributes
-    int lessons;
-    int weeks;
 
-    OnlineCourse(Subject subject, String instructor, int fee, int lessons, int weeks) {
+    public double calculateGrade() {
+        //TODO 17: calculate gradeScore as per the instructions above
+        double assignmentScore;
+        double quizScore;
 
-        super(subject, instructor, fee);
-        //TODO 16: initialize other attributes
-        this.lessons = lessons;
-        this.weeks = weeks;
+        if (course.subject.title.contains("Online")) {
+            assignmentScore = (double) course.assignmentMarks / 30 * 10;
+            quizScore = (double) course.quizMarks / 10 * 10;
+        } else {
+            assignmentScore = (double) course.assignmentMarks / 100 * 10;
+            quizScore = (double) course.quizMarks / 30 * 10;
+        }
+
+        this.gradeScore = (assignmentScore + quizScore) / 2;
+        return this.gradeScore;
     }
-}
