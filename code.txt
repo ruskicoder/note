@@ -1,57 +1,73 @@
-// TODO 18: display course list and accept user choice
+
+        //TODO 18: display course list and accept user choice
         System.out.println("Available Courses:");
-        System.out.println("1 = Java");
-        System.out.println("2 = Java Online");
-        System.out.println("3 = JavaScript");
-        System.out.println("4 = JavaScript Online");
+        System.out.println("1. Java");
+        System.out.println("2. Java Online");
+        System.out.println("3. JavaScript");
+        System.out.println("4. JavaScript Online");
         System.out.print("Enter course code: ");
-        int courseCode = input.nextInt();
-        input.nextLine(); // Consume newline left-over
+        int courseCode = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
 
-        Course selectedCourse;
+        Course course;
+        Subject subject;
 
-        // TODO 19: initialize object of chosen course
+        //TODO 19: initialize object of chosen course
         switch (courseCode) {
             case 1:
-                selectedCourse = new Course("Java", false);
+                subject = new Subject("Java", 4.0);
+                course = new ClassroomCourse(subject, "Dr. Smith", 5000, "Example School", "Fall 2024");
                 break;
             case 2:
-                selectedCourse = new Course("Java Online", true);
+                subject = new Subject("Java Online", 4.0);
+                course = new OnlineCourse(subject, "Dr. Jones", 4000, 20, 8);
                 break;
             case 3:
-                selectedCourse = new Course("JavaScript", false);
+                subject = new Subject("JavaScript", 3.5);
+                course = new ClassroomCourse(subject, "Mr. Brown", 4500, "Example School", "Fall 2024");
                 break;
             case 4:
-                selectedCourse = new Course("JavaScript Online", true);
+                subject = new Subject("JavaScript Online", 3.5);
+                course = new OnlineCourse(subject, "Ms. Davis", 3500, 15, 6);
                 break;
             default:
                 System.out.println("Invalid course code.");
-                return; // Exit the program if the input is invalid
+                return;
         }
 
-        // TODO 20: accept user input for learner's name
+
+
+        //TODO 20: accept user input for learner's name
         System.out.print("Enter learner's name: ");
-        String learnerName = input.nextLine();
-        Learner learner = new Learner(learnerName, selectedCourse);
+        String learnerName = scanner.nextLine();
+        Learner learner = new Learner(learnerName, course);
 
+        //TODO 21: call assignmentScore() method and quizScore() methods
+        int maxAssignment, maxQuiz;
 
-        // TODO 21: call assignmentScore() method and quizScore() methods
-        if (selectedCourse.isOnline()) {
-            System.out.println("For online courses, the maximum assignment mark is 30 and the maximum quiz mark is 10.");
+        if (course.subject.title.contains("Online")) {
+            maxAssignment = 30;
+            maxQuiz = 10;
         } else {
-            System.out.println("For classroom courses, the maximum assignment mark is 100 and the maximum quiz mark is 30.");
+            maxAssignment = 100;
+            maxQuiz = 30;
         }
 
-        learner.assignmentScore(input);
-        learner.quizScore(input);
+        System.out.print("Enter assignment marks (out of " + maxAssignment + "): ");
+        int assignmentMarks = scanner.nextInt();
+        learner.assignmentScore(assignmentMarks);
 
+        System.out.print("Enter quiz marks (out of " + maxQuiz + "): ");
+        int quizMarks = scanner.nextInt();
+        learner.quizScore(quizMarks);
 
-
-        // TODO 22: call calculateGrade() method. Display the result as described above
+        //TODO 22: call assignmentScore() method. Display the result as described above
         double gradeScore = learner.calculateGrade();
-        if (gradeScore >= 5) {
-            System.out.println(learner.getName() + " successfully passed " + selectedCourse.getCourseName() + " with a grade of " + gradeScore);
-        } else {
-            System.out.println(learner.getName() + " completed " + selectedCourse.getCourseName() + " with a grade of " + gradeScore);
 
+        if (gradeScore >= 5) {
+            System.out.println(learnerName+ " successfully passed the course with " + gradeScore);
+        } else {
+            System.out.println(learnerName + " completed the course with " + gradeScore);
         }
+
+        scanner.close();
