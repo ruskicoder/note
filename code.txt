@@ -1,20 +1,13 @@
- case 1: // Set properties  (MODIFIED)
-                                System.out.println("Enter age:");
-                                penguinObject.setAge(keyboard.nextInt());
-                                System.out.println("Enter height:");
-                                penguinObject.setHeight(keyboard.nextInt());
-                                System.out.println("Enter weight:");
-                                penguinObject.setWeight(keyboard.nextInt());
+public class Learner {
+    //TODO 1: declare instance variables
+    String name;
+    double grade;
+    Course course;
+    double gradeScore;
 
-                                System.out.println("Is the penguin swimming? (true/false):");  // Add swimming status input
-                                penguinObject.setSwimming(keyboard.nextBoolean());
-
-                                if (penguinObject.isSwimming()){
-                                    System.out.println("Enter the swim speed of the penguin:");
-                                    penguinObject.setSwimSpeed(keyboard.nextInt());
-                                }
-                                else{
-                                System.out.println("Enter the walk speed of the penguin:");
-                                penguinObject.setWalkSpeed(keyboard.nextInt());
-                                }
-                                break;
+    Learner(String name, Course course) {
+        //TODO 2: complete constructor
+        this.name = name;
+        this.course = course;
+    }
+}
